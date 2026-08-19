@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mural CEPAI — Mi primer encuentro con IA</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#f0f0ee;min-height:100vh}
+.header{background:#0a1f18;padding:2rem 1.5rem 1.5rem;text-align:center}
+.header h1{color:#fff;font-size:22px;font-weight:500;margin-bottom:6px}
+.header p{color:rgba(255,255,255,0.65);font-size:14px}
+.form-section{background:#f5f5f3;padding:1.5rem;border-bottom:0.5px solid #ddd}
+.form-inner{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.form-inner label{font-size:13px;color:#555;font-weight:500}
+.form-inner input,.form-inner textarea{width:100%;padding:10px 12px;border:0.5px solid #ccc;border-radius:8px;font-size:15px;font-family:inherit;background:#fff;color:#111;resize:vertical}
+.form-inner textarea{min-height:90px}
+.char-count{font-size:12px;color:#888;text-align:right;margin-top:-6px}
+.btn{background:#0a1f18;color:#fff;border:none;padding:10px 24px;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;align-self:flex-end;transition:opacity .15s}
+.btn:hover{opacity:.85}
+.btn:disabled{opacity:.45;cursor:default}
+.mural{padding:1.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.card{border-radius:12px;padding:1.25rem 1.25rem 1rem;display:flex;flex-direction:column;gap:8px}
+.card.s0{background:#0a1f18;color:#fff}
+.card.s1{background:#fff;color:#111;border:0.5px solid #ccc}
+.card.s2{background:#0d2b22;color:#e8f5f0}
+.card .cname{font-size:13px;font-weight:500}
+.card .ctext{font-size:14px;line-height:1.65}
+.card .cdate{font-size:11px;opacity:.45;margin-top:4px}
+.card.s0 .cname{color:#6fcba0}
+.card.s1 .cname{color:#0d7a4e}
+.card.s2 .cname{color:#7dcfab}
+.empty{text-align:center;padding:3rem 1rem;color:#888;font-size:14px;grid-column:1/-1}
+.loading{text-align:center;padding:2rem;color:#888;font-size:14px;grid-column:1/-1}
+.count-badge{display:inline-block;background:rgba(255,255,255,0.15);color:#fff;font-size:12px;padding:2px 10px;border-radius:20px;margin-left:10px;vertical-align:middle}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#0a1f18;color:#fff;padding:10px 20px;border-radius:8px;font-size:14px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:999;white-space:nowrap}
+.toast.show{opacity:1}
+.toast.error{background:#7a1a1a}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Mi primer encuentro con IA <span class="count-badge" id="badge">…</span></h1>
+  <p>Centro de Experimentación Pedagógica con IA</p>
+</div>
+
+<div class="form-section">
+  <div class="form-inner">
+    <div>
+      <label for="inp-nombre">Tu nombre</label>
+      <input id="inp-nombre" type="text" placeholder="¿Cómo te llamás?" maxlength="80" />
+    </div>
+    <div>
+      <label for="inp-exp">Tu experiencia</label>
+      <textarea id="inp-exp" placeholder="Contanos cómo fue tu primer encuentro con la IA…" maxlength="400"></textarea>
+      <div class="char-count"><span id="cc">0</span>/400</div>
+    </div>
+    <button class="btn" id="btn-send" onclick="submitEntry()">Compartir experiencia</button>
+  </div>
+</div>
+
+<div class="mural" id="mural">
+  <div class="loading">Cargando experiencias…</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SUPABASE_URL = 'https://yjqtmwmpiukbuegdjens.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_ZsYPIIjBKeYsYC9dQtGhXQ_SkVGpkPb';
+const TABLE = 'mural_cepai';
+
+const ta = document.getElementById('inp-exp');
+const cc = document.getElementById('cc');
+const badge = document.getElementById('badge');
+
+ta.addEventListener('input', () => { cc.textContent = ta.value.length; });
+
+function headers(){
+  return {
+    'Content-Type': 'application/json',
+    'apikey': SUPABASE_KEY,
+    'Authorization': 'Bearer ' + SUPABASE_KEY
+  };
+}
+
+async function loadEntries(){
+  const res = await fetch(
+    SUPABASE_URL + '/rest/v1/' + TABLE + '?select=*&order=created_at.desc',
+    { headers: headers() }
+  );
+  if(!res.ok) throw new Error('Error al cargar');
+  return res.json();
+}
+
+async function insertEntry(nombre, experiencia){
+  const res = await fetch(
+    SUPABASE_URL + '/rest/v1/' + TABLE,
+    {
+      method: 'POST',
+      headers: Object.assign({}, headers(), {'Prefer': 'return=minimal'}),
+      body: JSON.stringify({ nombre, experiencia })
+    }
+  );
+  if(!res.ok) throw new Error('Error al guardar');
+}
+
+function fmtDate(ts){
+  const d = new Date(ts);
+  return d.toLocaleDateString('es-AR',{day:'2-digit',month:'short',year:'numeric'});
+}
+
+function cardStyle(i){ return 's'+[0,1,2][i%3]; }
+
+function esc(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function showToast(msg, isError){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (isError ? ' error' : '');
+  setTimeout(function(){ t.className='toast'; }, 3000);
+}
+
+async function renderMural(){
+  const mural = document.getElementById('mural');
+  try {
+    const entries = await loadEntries();
+    badge.textContent = entries.length;
+    mural.innerHTML = '';
+    if(!entries.length){
+      mural.innerHTML = '<div class="empty">Sé el primero en compartir tu experiencia.</div>';
+      return;
+    }
+    entries.forEach(function(e, i){
+      const card = document.createElement('div');
+      card.className = 'card ' + cardStyle(i);
+      card.innerHTML = '<div class="cname">'+esc(e.nombre)+'</div><div class="ctext">'+esc(e.experiencia)+'</div><div class="cdate">'+fmtDate(e.created_at)+'</div>';
+      mural.appendChild(card);
+    });
+  } catch(err) {
+    badge.textContent = '!';
+    mural.innerHTML = '<div class="empty">No se pudieron cargar las experiencias. Revisá la conexión.</div>';
+  }
+}
+
+async function submitEntry(){
+  const nombre = document.getElementById('inp-nombre').value.trim();
+  const experiencia = document.getElementById('inp-exp').value.trim();
+  if(!nombre || !experiencia){ showToast('Completá tu nombre y tu experiencia.', true); return; }
+  const btn = document.getElementById('btn-send');
+  btn.disabled = true;
+  btn.textContent = 'Guardando…';
+  try {
+    await insertEntry(nombre, experiencia);
+    document.getElementById('inp-nombre').value = '';
+    document.getElementById('inp-exp').value = '';
+    cc.textContent = '0';
+    showToast('¡Experiencia compartida!');
+    await renderMural();
+  } catch(err) {
+    showToast('Error al guardar. Intentá de nuevo.', true);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Compartir experiencia';
+  }
+}
+
+renderMural();
+</script>
+</body>
+</html>
