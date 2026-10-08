@@ -4,7 +4,9 @@ Una rutina de Claude corre todos los lunes a las 7:52 (hora de Buenos Aires). Bu
 
 La rutina se llama "Oportunidades PED FLACSO (semanal)". Hoy no tiene Gmail conectado (desde esta sesión no se pudo guardar el conector), así que el reporte llega como notificación por mail de la rutina. Si le agregás Gmail desde la rutina en claude.ai, pasa a mandar el reporte formateado y a revisar los mails anteriores para no repetir oportunidades.
 
-Las instrucciones completas que recibe la rutina están en [`prompt-rutina.md`](prompt-rutina.md): perfil del PED, fuentes, consultas, criterios de puntaje y formato del mail. ## Cómo ajustarlo
+Las instrucciones completas que recibe la rutina están en [`prompt-rutina.md`](prompt-rutina.md): perfil del PED, fuentes, consultas, criterios de puntaje y formato del mail.
+
+## Cómo ajustarlo
 
 Si querés cambiar el perfil, sumar fuentes o tocar los puntajes, editá `prompt-rutina.md` y pedile a Claude que actualice la rutina con el texto nuevo (el texto se guarda en la rutina misma; editar este archivo solo no alcanza). Lo mismo para cambiar el día, la hora o los destinatarios.
 
