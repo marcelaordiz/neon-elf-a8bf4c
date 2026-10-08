@@ -20,11 +20,21 @@ Puede presentarse como universidad, institución académica, organismo internaci
 
 ## 2. Qué buscar
 
-Sirven: licitaciones públicas y privadas, concursos de precios, solicitudes de propuestas (RFP), expresiones de interés (EOI), consultorías institucionales (firmas, no individuales), convocatorias de subsidios, grants y fondos de cooperación.
+El PED se postula a dos líneas de trabajo. Todo lo que entre en alguna de las dos sirve, sea cual sea la temática del curso o del estudio:
 
-Descartá: puestos de empleo individuales, becas para personas, compras de equipamiento o hardware sin componente formativo, obras, convocatorias ya cerradas o que cierran en menos de 7 días desde hoy, y cualquier cosa sin componente educativo o de capacitación.
+**Línea A, diseño instruccional y e-learning.** Diseño de cursos virtuales, diseño instruccional, guionado y producción de contenidos y materiales digitales (multimedia, video, interactivos, microlearning, SCORM), virtualización de cursos presenciales, implementación y tutoría de capacitaciones en línea, armado o gestión de campus virtuales y aulas Moodle, formación docente en entornos virtuales.
+
+**Línea B, investigaciones.** Estudios, investigaciones, diagnósticos, relevamientos, evaluaciones de programas o de impacto, sistematizaciones y estados del arte. Priorizá las de educación, tecnologías digitales, IA y ciencias sociales, pero cualquier investigación social que FLACSO pueda encarar como institución académica entra.
+
+Sirven en ambas líneas: licitaciones públicas y privadas, concursos de precios, solicitudes de propuestas (RFP), expresiones de interés (EOI), términos de referencia para consultorías institucionales (firmas o instituciones, no individuales), convocatorias de subsidios, grants y fondos de investigación o cooperación.
+
+Descartá: puestos de empleo individuales, becas para personas, compras de software, licencias o hardware sin servicio de diseño o investigación, obras, capacitaciones 100 % presenciales sin componente virtual ni de diseño, convocatorias ya cerradas o que cierran en menos de 7 días desde hoy.
+
+En el reporte, marcá cada oportunidad con su línea: [Diseño instruccional / e-learning] o [Investigación].
 
 ## 3. Dónde buscar
+
+Agregá a las fuentes de abajo, para la línea B, los fondos y llamados de investigación: CLACSO, IDRC, Agencia I+D+i (PICT, PIP del CONICET), Fundación Carolina, programas Horizon Europe abiertos a América Latina, UNESCO, UNICEF Innocenti, CEPAL, BID (estudios y evaluaciones), OEI, Banco Mundial (estudios analíticos), y ministerios que licitan estudios y evaluaciones.
 
 Usá WebSearch (modo "standard"; "extended" sólo si una fuente clave devuelve resultados pobres) y WebFetch para abrir las páginas prometedoras y confirmar fecha de cierre, monto y requisitos. Hacé las búsquedas en paralelo. Cubrí como mínimo:
 
@@ -36,24 +46,34 @@ Usá WebSearch (modo "standard"; "extended" sólo si una fuente clave devuelve r
 
 **Argentina**: COMPR.AR (comprar.gob.ar), Boletín Oficial, Ministerio de Capital Humano / Secretaría de Educación, INFoD, INAP, Agencia I+D+i, portales de compras de la Provincia de Buenos Aires y de CABA (Buenos Aires Compras), ministerios de educación provinciales, universidades nacionales, legislaturas y poderes judiciales (escuelas judiciales que contratan formación virtual).
 
-**Otros países de la región**: SECOP II (Colombia), Mercado Público (Chile), SEACE (Perú), ARCE (Uruguay), DNCP (Paraguay), compras públicas de México y Ecuador, cuando el objeto sea formación virtual o desarrollo de cursos en línea.
+**Otros países de la región**: SECOP II (Colombia), Mercado Público (Chile), SEACE (Perú), ARCE (Uruguay), DNCP (Paraguay), compras públicas de México y Ecuador, cuando el objeto sea diseño o desarrollo de cursos en línea, o un estudio o evaluación.
 
-Ejemplos de consultas (combiná y variá; incluí el año y el mes actual):
+Ejemplos de consultas (combiná y variá; incluí el año y el mes actual). Repartí las búsquedas entre las dos líneas, más o menos mitad y mitad.
+
+Línea A:
 - "licitación capacitación virtual docentes" / "convocatoria formación docente a distancia"
 - "diseño de cursos virtuales consultoría firma" / "desarrollo de plataforma Moodle licitación"
 - "términos de referencia curso virtual" / "TDR diseño instruccional"
 - "expresión de interés capacitación en línea funcionarios"
 - "request for proposals e-learning Latin America" / "RFP online training course design"
-- "inteligencia artificial en educación convocatoria" / "alfabetización digital licitación"
+- "producción de contenidos e-learning licitación" / "virtualización de cursos convocatoria"
+- "instructional design services RFP" / "e-learning content development tender"
 - "Erasmus+ capacity building higher education Latin America call"
-- "grant digital education Latin America"
+
+Línea B:
+- "convocatoria investigación educación" / "licitación estudio diagnóstico educativo"
+- "términos de referencia investigación consultoría institucional" / "TDR evaluación de programa"
+- "evaluación de impacto programa educativo licitación" / "relevamiento sistematización convocatoria"
+- "call for proposals research education Latin America" / "request for proposals evaluation study"
+- "fondo de investigación ciencias sociales convocatoria" / "IDRC call for proposals Latin America"
+- "inteligencia artificial en educación investigación convocatoria" / "grant digital education research"
 
 ## 4. Cómo puntuar (0 a 100)
 
 | Criterio | Puntos |
 |---|---|
-| Afinidad temática con el perfil (sección 1) | 0 a 30 |
-| Modalidad virtual o híbrida, o el servicio pedido es capacitación/diseño de cursos | 0 a 20 |
+| Encaje con la línea A o B: el servicio pedido es justo diseño instruccional / e-learning o una investigación (30); lo incluye como parte importante (15 a 25); es marginal (0 a 10) | 0 a 30 |
+| Afinidad temática con el perfil (sección 1): educación, tecnologías, IA, ciencias sociales | 0 a 20 |
 | Elegibilidad: FLACSO puede presentarse (tipo de entidad, país, registro de proveedores) | 0 a 15 |
 | Plazo viable: 3 semanas o más = 10, 1 a 3 semanas = 5, menos = 0 | 0 a 10 |
 | Escala y presupuesto acordes a un equipo universitario | 0 a 10 |
